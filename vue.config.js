@@ -28,6 +28,15 @@ module.exports = defineConfig({
   
   // 静态资源目录
   assetsDir: 'static',
+
+  // 明确声明单页应用入口与模板，避免重复生成 index.html
+  pages: {
+    index: {
+      entry: 'src/main.js',
+      template: 'public/index.html',
+      filename: 'index.html'
+    }
+  },
   
   // 生产环境source map
   productionSourceMap: false,
