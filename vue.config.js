@@ -37,6 +37,26 @@ module.exports = defineConfig({
       filename: 'index.html'
     }
   },
+
+  // 调整 CopyWebpackPlugin，显式忽略 public/index.html，避免与 HtmlWebpackPlugin 冲突
+  chainWebpack: config => {
+    if (config.plugins.has('copy')) {
+      config.plugin('copy').tap(args => {
+        const patterns = (args[0] && args[0].patterns) ? args[0].patterns : []
+        args[0].patterns = patterns.map(p => {
+          const next = { ...p }
+          if (next.ignore) {
+            next.ignore = Array.isArray(next.ignore) ? next.ignore.concat(['index.html']) : ['index.html']
+          }
+          next.globOptions = Object.assign({}, next.globOptions, {
+            ignore: [].concat((next.globOptions && next.globOptions.ignore) || [], ['**/index.html'])
+          })
+          return next
+        })
+        return args
+      })
+    }
+  },
   
   // 生产环境source map
   productionSourceMap: false,
