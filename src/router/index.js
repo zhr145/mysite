@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import BhamlaStyleHome from '../views/BhamlaStyleHome.vue'
 import TemperatureDashboard from '../views/TemperatureDashboard.vue'
 import VideoMonitor from '../views/VideoMonitor.vue'
@@ -107,7 +107,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes,
   scrollBehavior(to, from, savedPosition) {
     // 页面切换时滚动到顶部

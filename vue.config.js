@@ -21,7 +21,7 @@ module.exports = defineConfig({
   },
   
   // 生产环境构建配置
-  publicPath: process.env.NODE_ENV === 'production' ? '/static/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   
   // 输出目录
   outputDir: 'dist',
